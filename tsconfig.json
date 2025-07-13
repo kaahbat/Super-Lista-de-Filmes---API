@@ -1,0 +1,13 @@
+{
+  "compilerOptions": { 
+    "target": "es2021",             // Define que o código JavaScript gerado será compatível com a versão ES2021
+    "module": "commonjs",           // Usa o sistema de módulos CommonJS (padrão do Node.js)
+    "rootDir": "./src",             // Define a pasta onde está o código-fonte TypeScript
+    "outDir": "./dist",             // Define a pasta onde os arquivos JavaScript compilados serão salvos
+    "esModuleInterop": true,        // Permite importar módulos CommonJS usando a sintaxe `import` do ES6
+    "forceConsistentCasingInFileNames": true, // Garante que o uso de letras maiúsculas e minúsculas nos nomes dos arquivos seja consistente
+    "strict": true,                 // Ativa várias verificações de tipo rigorosas para aumentar a segurança do código
+    "skipLibCheck": true            // Ignora a checagem de tipos em arquivos de definição de bibliotecas (*.d.ts) para acelerar a compilação
+  },
+  "include": ["src/**/*"]           // Inclui todos os arquivos dentro da pasta `src` e suas subpastas para serem compilados
+}

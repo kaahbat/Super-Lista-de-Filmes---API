@@ -1,0 +1,22 @@
+// prisma/schema.prisma
+
+// Define o cliente que será gerado (Prisma Client para TypeScript)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define a fonte de dados, apontando para a variável no nosso ficheiro .env
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Nosso primeiro modelo de dados: User
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
