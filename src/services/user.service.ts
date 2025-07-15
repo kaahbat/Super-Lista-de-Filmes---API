@@ -7,10 +7,11 @@ type IcreateUserData = Pick < User, 'email' | 'name' | 'password'>; // Define o 
 
 export class UserService{
     async create ( data: IcreateUserData ):  Promise<Omit<User, 'password'>> { //define o tipo do retorno da funçao para uma promessa do tipo 'User' sem a propriedade 'password'
-        
+        console.warn('3. CHEGOU NO SERVICE');
 
+        console.warn('4. A VERIFICAR O UTILIZADOR NO BANCO DE DADOS...');
         const existsUser : User | null = await prisma.user.findUnique({where : { email: data.email}}) //verifica se ja existe aquele email
-
+        console.warn('   -> UTILIZADOR VERIFICADO.');
         if (existsUser) { 
             throw new Error ('Este email já esta em uso');
             
