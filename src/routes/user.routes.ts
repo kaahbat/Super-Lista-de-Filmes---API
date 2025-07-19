@@ -5,6 +5,6 @@ const userRoutes = Router();
 const userController = new UserController();
 
 userRoutes.post("/register", userController.create);
-
+userRoutes.post("/login", userController.login);
 
 export {userRoutes};
