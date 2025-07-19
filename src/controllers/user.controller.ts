@@ -36,12 +36,12 @@ export class UserController{
 
         try{
             const userLogin= await userService.login({email,password});
-            return res.status(201).json(userLogin);
+            return res.status(200).json(userLogin);
 
 
         }catch(error){
             if(error instanceof Error){
-                return res.status(409).json ({messege: error.message});
+                return res.status(401).json ({messege: error.message});
             }
             return next(error);
         }

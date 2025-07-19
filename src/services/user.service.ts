@@ -43,7 +43,7 @@ export class UserService{
         const userValid : User | null = await prisma.user.findUnique({where : {email: data.email}});
         
         if(!userValid){
-            throw new Error ('O email não foi localizado');
+            throw new Error ('E-mail ou senha inválidos.');
 
         }
         
@@ -51,7 +51,7 @@ export class UserService{
         
 
         if(!validatedPassword){
-            throw new Error ('A senha não confere, tente novamente');
+            throw new Error ('E-mail ou senha inválidos.');
         }
 
 
