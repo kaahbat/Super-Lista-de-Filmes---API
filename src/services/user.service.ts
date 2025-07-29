@@ -46,14 +46,11 @@ export class UserService{
             throw new Error ('E-mail ou senha inválidos.');
 
         }
-        
         const validatedPassword  = await bcrypt.compare(data.password ,  userValid.password);
         
-
         if(!validatedPassword){
             throw new Error ('E-mail ou senha inválidos.');
         }
-
 
         const token = jwt.sign(
             {
@@ -78,6 +75,19 @@ export class UserService{
         
         
         return userToken;
+
+    }
+
+    public async getProfileById(id:number){
+        const userByID : User | null = await prisma.user.findUnique({where : {id}});
+        if(!userByID){
+            throw new Error ('Utilizador não encontrado.');
+        }
+
+        const {password, ...userWithouPassword } = userByID;
+
+        return userWithouPassword
+
 
     }
 }

@@ -29,7 +29,8 @@ export class UserController{
     }
     
     public async login(req: Request, res: Response, next: NextFunction){
-
+        
+        
         const {email, password} = req.body;
 
         const userService: UserService = new UserService();
@@ -48,4 +49,30 @@ export class UserController{
 
     }
 
+    public async getMyProfile(req: Request, res: Response, next: NextFunction) {
+
+        const  userService :UserService = new UserService(); 
+
+        const userId = req.user?.id;
+
+        if(!userId){
+            return res.status(401).json ({messege: 'Utilizador Invalido.'});
+        }
+
+        try {
+            
+            const myUser = await userService.getProfileById(userId);
+            return res.status(200).json(myUser)
+
+        } catch (error) {
+            if (error instanceof Error) {
+                
+                return res.status(404).json({ message: error.message });
+            }
+            return next(error);
+        }
+
+
+
+    }    
 }
