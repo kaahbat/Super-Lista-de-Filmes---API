@@ -7,7 +7,7 @@ export class UserController{
     public async create(req: Request, res: Response, next: NextFunction){
         console.warn('1. CHEGOU NO CONTROLLER');
         const {email, name, password } = req.body;
-
+        //TODO:criar no escopo da classe o userService
         const  userService :UserService = new UserService(); 
 
         

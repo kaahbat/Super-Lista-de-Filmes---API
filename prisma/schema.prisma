@@ -13,10 +13,36 @@ datasource db {
 
 // Nosso primeiro modelo de dados: User
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  name          String
+  password      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  movieLists    MovieList[]
+
+
+}
+
+model MovieList{
+  id            Int     @id @default(autoincrement())
+  name          String  
+  ownerId       Int
+  createdAt     DateTime @default(now())
+  owner         User    @relation(fields: [ownerId], references: [id])
+  movies        Movie[]
+
+  
+}
+
+model Movie{
+  id            Int   @id @default(autoincrement())
+  tmdbID        Int
+  title         String
+  posterPath    String?
+  addedAt       DateTime  @default(now())
+  listId        Int
+  list          MovieList @relation(fields: [listId],references: [id])
+  @@unique([tmdbID,listId])
+
 }
