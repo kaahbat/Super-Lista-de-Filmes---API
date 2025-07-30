@@ -1,4 +1,5 @@
 
+import { error } from 'console';
 import { prisma } from '../core/prismaClient';
 import { MovieList } from '@prisma/client';
 
@@ -24,6 +25,15 @@ export class MovieListService{
         }})
 
         return newList
+
+    }
+
+    public async getMyLists(ownerId:number): Promise<MovieList[]> {
+        
+        const myListsByID : MovieList[] | [] = await prisma.movieList.findMany({where: {ownerId: ownerId}});
+
+        return myListsByID;
+
 
     }
 
